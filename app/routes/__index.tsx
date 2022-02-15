@@ -1,5 +1,4 @@
 import { LoaderFunction, Outlet, useLoaderData } from "remix";
-import { getAllPosts } from "~/post";
 import { db } from "~/utils/db.server";
 
 export type Post = {
