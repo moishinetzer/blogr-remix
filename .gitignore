@@ -10,3 +10,4 @@ api/_build
 .cache
 build
 app/tailwind.css
+.env
