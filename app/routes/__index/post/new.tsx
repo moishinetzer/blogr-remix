@@ -18,12 +18,14 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function NewPost() {
   return (
-    <Form method="post">
+    <Form method="post" className="grid grid-cols-3 gap-2">
       <label>Title</label>
-      <input type="text" name="title" />
+      <input type="text" name="title" className="col-span-2" />
       <label>Content</label>
-      <input type="text" name="content" />
-      <button type="submit">Submit</button>
+      <input type="text" name="content" className="col-span-2" />
+      <button type="submit" className="bg-emerald-500 rounded-lg text-white">
+        Submit
+      </button>
     </Form>
   );
 }
