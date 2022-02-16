@@ -8,6 +8,7 @@ import {
 import { db } from "~/utils/db.server";
 import type { Post } from "~/routes/__index";
 import invariant from "tiny-invariant";
+import PostView from "~/routes/components/PostView";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const post = await db.post.findFirst({
@@ -43,30 +44,5 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Post() {
   const post = useLoaderData<Post>();
-  return (
-    <div className=" py-8 pl-6 max-w-md w-screen bg-white/50 rounded-xl">
-      <h1 className="text-3xl semibold text-slate-800 mb-6">{post.title}</h1>
-      <p className="mb-6">{post.content}</p>
-      <Form method="post" className="space-x-4">
-        <input type="hidden" name="id" value={post.id} />
-        <input type="hidden" name="title" value={post.title} />
-        <button
-          type="submit"
-          name="_action"
-          value="edit"
-          className="border px-6 py-2 rounded-xl"
-        >
-          Edit
-        </button>
-        <button
-          type="submit"
-          name="_action"
-          value="delete"
-          className="border px-6 py-2 rounded-xl"
-        >
-          Delete
-        </button>
-      </Form>
-    </div>
-  );
+  return <PostView post={post} />;
 }
