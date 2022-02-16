@@ -11,7 +11,7 @@ datasource db {
 }
 
 // Define a Post model
-model Post {
+model post {
   id        String  @id @default(cuid())
   title     String
   content   String
