@@ -26,7 +26,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="w-full h-full">
+      <body className="w-full h-screen bg-slate-100">
+        {/* Vertically stretched div to full height */}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
