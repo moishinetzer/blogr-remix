@@ -14,7 +14,7 @@ export default function Sidebar(props: PropTypes) {
   return (
     <div className="space-y-2 border-r-slate-900/50 text-lg  text-slate-900">
       {props.posts.map((post) => (
-        <div>
+        <div key={post.id}>
           <NavLink
             key={post.id}
             to={`/post/${encodeURI(post.title)}`}

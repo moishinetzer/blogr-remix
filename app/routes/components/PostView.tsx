@@ -3,7 +3,7 @@ import { Form } from "remix";
 
 type Props = {
   post: {
-    id: string;
+    id?: string;
     title: string;
     content: string;
   };

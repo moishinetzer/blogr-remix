@@ -4,8 +4,10 @@ import {
   LoaderFunction,
   redirect,
   useLoaderData,
+  useTransition,
 } from "remix";
 import invariant from "tiny-invariant";
+import PostView from "~/routes/components/PostView";
 import { Post } from "~/routes/__index";
 import { db } from "~/utils/db.server";
 
@@ -40,8 +42,11 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function EditPost() {
+  const transition = useTransition();
   const post = useLoaderData<Post>();
-  return (
+  return transition.submission ? (
+    <PostView post={Object.fromEntries(transition.submission?.formData)} />
+  ) : (
     <>
       <Form method="post" className="grid grid-cols-3 gap-3">
         <input type="hidden" name="id" value={post.id} />
@@ -62,7 +67,7 @@ export default function EditPost() {
           type="submit"
           name="edit"
           defaultValue={"edited"}
-          className="px-6 py-2 rounded-xl bg-emerald-200 text-emerald-700"
+          className="rounded-xl bg-emerald-200 px-6 py-2 text-emerald-700"
         >
           Edit
         </button>
