@@ -1,13 +1,14 @@
-import { NavLink } from "remix";
+import { CSSProperties } from "react";
+import { NavLink, NavLinkProps } from "remix";
 
 export default function Navbar() {
   const activeButtonStyles =
-    "text-xl text-slate-700 border-b-2 border-green-300";
+    "text-slate-900 text-xl border-b-2 border-green-400";
   const inactiveButtonStyles =
-    "text-xl text-slate-700 border-b-2 border-slate-300";
+    "text-xl text-slate-600 border-b-2 border-slate-300";
 
   return (
-    <div className="flex items-center space-x-9 p-4">
+    <div className="mx-auto flex max-w-3xl items-center space-x-9 p-4 ">
       <NavLink
         to={"/"}
         className={({ isActive }) =>

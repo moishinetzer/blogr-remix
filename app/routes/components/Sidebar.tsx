@@ -8,11 +8,11 @@ type PropTypes = {
 };
 
 export default function Sidebar(props: PropTypes) {
-  const activeButtonStyles = "border-b-2 border-green-300";
-  const inactiveButtonStyles = "border-b-2 border-slate-300";
+  const activeButtonStyles = "text-slate-900 border-b-2 border-green-400";
+  const inactiveButtonStyles = "text-slate-700 border-b-2 border-slate-400";
 
   return (
-    <div className="text-lg space-y-2 text-slate-900 pr-8 border-r border-r-slate-900/50">
+    <div className="space-y-2 border-r-slate-900/50 text-lg  text-slate-900">
       {props.posts.map((post) => (
         <div>
           <NavLink

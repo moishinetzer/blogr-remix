@@ -1,7 +1,7 @@
 import { Link, LoaderFunction, NavLink, Outlet, useLoaderData } from "remix";
 import { db } from "~/utils/db.server";
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 export type Post = {
   id: string;
@@ -22,14 +22,18 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const posts = useLoaderData<Post[]>();
   return (
-    <div className="max-w-3xl mx-auto">
-      <Navbar />
-      <div className="flex">
-        <Sidebar posts={posts} />
-        <div className="flex-none pl-10 text-xl">
-          <Outlet />
+    <>
+      <div className="mb-8 border-b bg-slate-200">
+        <Navbar />
+      </div>
+      <div className="mx-auto max-w-3xl pl-6 xl:pl-0">
+        <div className="flex">
+          <Sidebar posts={posts} />
+          <div className="flex-none pl-10 text-xl">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

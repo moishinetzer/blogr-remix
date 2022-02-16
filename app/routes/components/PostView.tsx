@@ -10,27 +10,27 @@ type Props = {
 };
 export default function PostView({ post }: Props) {
   return (
-    <div className=" py-8 pl-6 max-w-md w-screen bg-white/50 rounded-xl">
-      <h1 className="text-3xl semibold text-slate-800 mb-6">{post.title}</h1>
-      <p className="mb-6">{post.content}</p>
-      <Form method="post" className="space-x-4">
+    <div className="w-screen max-w-md rounded-xl bg-white py-6 px-6 shadow-md">
+      <h1 className="text-slate-00 mb-6 text-2xl">{post.title}</h1>
+      <p className="mb-8">{post.content}</p>
+      <Form method="post" className="">
         <input type="hidden" name="id" value={post.id} />
         <input type="hidden" name="title" value={post.title} />
         <button
           type="submit"
           name="_action"
           value="edit"
-          className="border px-6 py-2 rounded-xl"
+          className="mr-4 rounded-xl border border-slate-200 px-6 py-2 text-sm tracking-wider text-slate-700 shadow shadow-slate-300"
         >
-          Edit
+          EDIT
         </button>
         <button
           type="submit"
           name="_action"
           value="delete"
-          className="border px-6 py-2 rounded-xl"
+          className=" rounded-xl border border-slate-200 px-6 py-2 text-sm tracking-wider text-slate-700 shadow shadow-slate-300"
         >
-          Delete
+          DELETE
         </button>
       </Form>
     </div>
