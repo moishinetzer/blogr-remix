@@ -53,11 +53,10 @@ export default function EditPost() {
           className="col-span-2"
         />
         <label>Content</label>
-        <input
-          type="text"
+        <textarea
           name="content"
           defaultValue={post.content}
-          className="col-span-2"
+          className="col-span-2 h-28"
         />
         <button
           type="submit"
