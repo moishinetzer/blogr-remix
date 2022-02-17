@@ -1,27 +1,39 @@
 import { ActionFunction, Form, redirect, useTransition } from "remix";
-import { db } from "~/utils/db.server";
 import invariant from "tiny-invariant";
 import PostView from "~/routes/components/PostView";
-import { Post } from "~/routes/__index";
+import { createPost } from "~/lib/postActions";
 
 export const action: ActionFunction = async ({ request }) => {
   // Create a post with the request
   const formData = await request.formData();
   const title = formData.get("title");
   const content = formData.get("content");
+
   invariant(typeof title === "string", "title must be a string");
   invariant(typeof content === "string", "content must be a string");
 
-  const createdPost = await db.post.create({
-    data: { content: content, title: title, published: true },
-  });
+  const createdPost = await createPost({ title, content });
   return redirect(`/post/${createdPost.title}`);
+};
+
+type ValidCreatedPost = {
+  title: string;
+  content: string;
+};
+
+const isValidPost = (
+  post: { [k: string]: FormDataEntryValue } | undefined
+): post is ValidCreatedPost => {
+  return typeof post?.title === "string" && typeof post?.content === "string";
 };
 
 export default function NewPost() {
   const transition = useTransition();
-  return transition.submission ? (
-    <PostView post={Object.fromEntries(transition.submission?.formData)} />
+  const createdPost = transition.submission
+    ? Object.fromEntries(transition.submission?.formData)
+    : undefined;
+  return transition.submission && isValidPost(createdPost) ? (
+    <PostView post={createdPost} />
   ) : (
     <Form method="post" className="grid grid-cols-3 gap-3">
       <label>Title</label>
